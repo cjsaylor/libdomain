@@ -2,6 +2,8 @@
 
 Libdomain is a php library to facilitate [domain driven development](http://en.wikipedia.org/wiki/Domain-driven_design).
 
+[![Build Status](https://travis-ci.org/cjsaylor/libdomain.svg?branch=master)](https://travis-ci.org/cjsaylor/libdomain)
+
 ## Core concepts
 
 This library contains the following abstract classes:
