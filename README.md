@@ -1,6 +1,6 @@
 # libdomain
 
-Libdomain is a php library to facilitate domain driven development.
+Libdomain is a php library to facilitate [domain driven development](http://en.wikipedia.org/wiki/Domain-driven_design).
 
 ## Core concepts
 
