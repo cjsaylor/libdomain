@@ -28,5 +28,21 @@ class EntityTest extends \PHPUnit_Framework_TestCase {
 		$this->assertFalse(isset($entity['entry1']));
 	}
 
+	public function testAccessableCallback() {
+		$entity = $this->getMock('\Cjsaylor\Test\Domain\TestEntity', ['setId', 'setComplexStringWithUnderscores']);
+		$entity
+			->expects($this->once())
+			->method('setId')
+			->with('1');
+		$entity
+			->expects($this->exactly(3))
+			->method('setComplexStringWithUnderscores')
+			->with('value1');
+		$entity['id'] = '1';
+		$entity['complex_string_with_underscores'] = 'value1';
+		$entity['complexStringWithUnderscores'] = 'value1';
+		$entity['complexString_With_underscores'] = 'value1';
+	}
+
 }
 

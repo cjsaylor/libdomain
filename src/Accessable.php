@@ -13,6 +13,11 @@ trait Accessable {
 	 */
 	public function offsetSet($offset, $value) {
 		if ($offset !== null) {
+			$method = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $offset)));
+			if (method_exists($this, $method)) {
+				$this->$method($value);
+				return;
+			}
 			$this->data[$offset] = $value;
 		}
 	}
