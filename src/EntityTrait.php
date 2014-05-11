@@ -11,7 +11,9 @@ trait EntityTrait {
 	 * @return void
 	 */
 	public function initialize(array $initialData = []) {
-		$this->data = $initialData;
+		foreach ($initialData as $key => $value) {
+			$this[$key] = $value;
+		}
 	}
 
 }

@@ -44,5 +44,14 @@ class EntityTest extends \PHPUnit_Framework_TestCase {
 		$entity['complexString_With_underscores'] = 'value1';
 	}
 
+	public function testAccessableCallbackOnInitialize() {
+		$entity = $this->getMock('\Cjsaylor\Test\Domain\TestEntity', ['setId']);
+		$entity
+			->expects($this->once())
+			->method('setId')
+			->with('1');
+		$entity->initialize(['id' => '1']);
+	}
+
 }
 
