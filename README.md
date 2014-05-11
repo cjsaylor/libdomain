@@ -15,6 +15,8 @@ This library contains the following abstract classes:
 
 ## Examples
 
+#### Entity Example
+
 The first example illustrates a user object that accepts an `email` attribute that must be an immutable email value object.
 
 ```php
@@ -50,6 +52,8 @@ $user = new User();
 $user['email'] = new Email('user@somedomain.com');
 ```
 
+#### CollectionEntity example
+
 This next example will illustrate a group of users where that group also has an identity.
 Here we will make use of the `CollectionEntity` which is both a `Collection` and an `Entity`.
 It will make use of the `User` entity defined in the first example.
@@ -74,4 +78,25 @@ $user = new User([
 ]);
 
 $userGroup->add($user);
+```
+
+#### Setter callback example
+
+Let's modify the `User` object with some custom setter callbacks (available in `1.0.1`).
+This allows us to typehint (and do other custom set logic for the `Email` value object).
+
+```php
+class User extends Entity {
+
+  public function setEmail(Email $email) {
+    $this->data['email'] = $email;
+  }
+
+}
+
+// Would produce an error as `setEmail` would be called and would not match the type.
+$user = new User(['email' => 'user@somedomain.com']);
+
+// Valid
+$user = new User(['email' => new Email('user@somedomain.com')]);
 ```
