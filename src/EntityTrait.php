@@ -16,4 +16,17 @@ trait EntityTrait {
 		}
 	}
 
+	/**
+	 * Array representation of this entity.
+	 *
+	 * @return array
+	 */
+	public function toArray() {
+		$output = [];
+		foreach ($this->data as $key => $val) {
+			$output[$key] = $val instanceof ArraySerializable ? $val->toArray() : $val;
+		}
+		return $output;
+	}
+
 }

@@ -9,4 +9,16 @@ class CollectionEntityTest extends \PHPUnit_Framework_TestCase {
 		$this->assertSame(1, $collectionEntity['id']);
 	}
 
+	public function testToArray() {
+		$collectionEntity = new TestCollectionEntity(['id' => 1]);
+		$collectionEntity->add(new TestEntity(['foo' => 'bar']));
+		$expected = [
+			'id' => 1,
+			'entries' => [
+				['foo' => 'bar']
+			]
+		];
+		$this->assertEquals($expected, $collectionEntity->toArray());
+	}
+
 }
