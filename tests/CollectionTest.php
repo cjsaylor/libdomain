@@ -41,4 +41,24 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals($expected, $collection->toArray());
 	}
 
+	public function testToArrayCascade() {
+		$collection = new TestCollection();
+		$subCollection = new TestCollection();
+		$subCollection->add(new TestEntity(['id' => 1]));
+		$subCollection->add(new TestEntity(['id' => 2]));
+		$entity = new TestEntity(['id' => 0]);
+		$entity['sub'] = $subCollection;
+		$collection->add($entity);
+		$expected = [
+			[
+				'id' => 0,
+				'sub' => [
+					['id' => 1],
+					['id' => 2]
+				]
+			]
+		];
+		$this->assertEquals($expected, $collection->toArray());
+	}
+
 }

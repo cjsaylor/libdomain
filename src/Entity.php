@@ -27,7 +27,11 @@ abstract class Entity implements EntityInterface {
 	 * @return array
 	 */
 	public function toArray() {
-		return $this->data;
+		$output = [];
+		foreach ($this->data as $key => $val) {
+			$output[$key] = $val instanceof ArraySerializable ? $val->toArray() : $val;
+		}
+		return $output;
 	}
 
 }

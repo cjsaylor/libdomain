@@ -2,5 +2,5 @@
 
 namespace Cjsaylor\Domain;
 
-interface CollectionInterface extends \IteratorAggregate, \Countable {
+interface CollectionInterface extends \IteratorAggregate, \Countable, ArraySerializable {
 }

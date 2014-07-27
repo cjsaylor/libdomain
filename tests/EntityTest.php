@@ -53,5 +53,22 @@ class EntityTest extends \PHPUnit_Framework_TestCase {
 		$entity->initialize(['id' => '1']);
 	}
 
+	public function testToArray() {
+		$expected = ['id' => 1];
+		$entity = new TestEntity($expected);
+		$this->assertEquals($expected, $entity->toArray());
+	}
+
+	public function testToArrayCascade() {
+		$parent = new TestEntity();
+		$parent['child'] = new TestEntity(['foo' => true]);
+		$expected = [
+			'child' => [
+				'foo' => true
+			]
+		];
+		$this->assertEquals($expected, $parent->toArray());
+	}
+
 }
 

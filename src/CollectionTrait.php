@@ -12,7 +12,7 @@ trait CollectionTrait {
 	public function toArray() {
 		$output = [];
 		foreach ($this->entries as $entry) {
-			$output[] = $entry instanceof EntityInterface ? $entry->toArray() : $entry;
+			$output[] = $entry instanceof ArraySerializable ? $entry->toArray() : $entry;
 		}
 		return $output;
 	}
