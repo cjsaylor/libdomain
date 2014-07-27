@@ -3,7 +3,7 @@
 namespace Cjsaylor\Domain;
 
 abstract class Entity implements EntityInterface {
-	use Accessable, Iteratable, EntityTrait;
+	use Accessable, EntityTrait;
 
 	/**
 	 * Data container.
