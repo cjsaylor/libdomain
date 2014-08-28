@@ -126,6 +126,7 @@ use Cjsaylor\Domain\Behavior\PropertyLimitable;
 use Cjsaylor\Domain\Behavior\PropertyLimitTrait;
 
 class User extends Entity implements PropertyLimitable {
+  use PropertyLimitTrait;
 
   public function concreteAttributes() {
     return ['id', 'email'];
