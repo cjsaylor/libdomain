@@ -2,6 +2,14 @@
 
 namespace Cjsaylor\Domain;
 
+use Cjsaylor\Domain\Collection\CollectionInterface;
+use Cjsaylor\Domain\Entity\EntityInterface;
+use Cjsaylor\Domain\Behavior\Accessable;
+use Cjsaylor\Domain\Behavior\Iteratable;
+use Cjsaylor\Domain\Behavior\Countable;
+use Cjsaylor\Domain\Collection\CollectionTrait;
+use Cjsaylor\Domain\Entity\EntityTrait;
+
 abstract class CollectionEntity implements CollectionInterface, EntityInterface {
 	use Accessable, Iteratable, Countable;
 	use CollectionTrait {

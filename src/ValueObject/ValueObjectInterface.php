@@ -1,6 +1,6 @@
 <?php
 
-namespace Cjsaylor\Domain;
+namespace Cjsaylor\Domain\ValueObject;
 
 interface ValueObjectInterface extends \ArrayAccess {
 }

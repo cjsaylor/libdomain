@@ -1,6 +1,6 @@
 <?php
 
-namespace Cjsaylor\Domain;
+namespace Cjsaylor\Domain\Behavior;
 
 trait ReadAccessable {
 	use Accessable {

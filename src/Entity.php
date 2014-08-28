@@ -2,6 +2,10 @@
 
 namespace Cjsaylor\Domain;
 
+use Cjsaylor\Domain\Entity\EntityInterface;
+use Cjsaylor\Domain\Behavior\Accessable;
+use Cjsaylor\Domain\Entity\EntityTrait;
+
 abstract class Entity implements EntityInterface {
 	use Accessable, EntityTrait;
 

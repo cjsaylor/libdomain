@@ -1,8 +1,9 @@
 <?php
 
-namespace Cjsaylor\Test\Domain;
+namespace Cjsaylor\Test\Domain\Collection;
 
-use \Cjsaylor\Domain\Collection;
+use Cjsaylor\Test\Domain\TestCollection;
+use Cjsaylor\Test\Domain\TestEntity;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase {
 

@@ -2,6 +2,8 @@
 
 namespace Cjsaylor\Test\Domain;
 
+use Cjsaylor\Test\Domain\TestEntity;
+
 class EntityTest extends \PHPUnit_Framework_TestCase {
 
 	public function testEntityAccessable() {

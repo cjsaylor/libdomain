@@ -2,6 +2,11 @@
 
 namespace Cjsaylor\Domain;
 
+use Cjsaylor\Domain\Collection\CollectionInterface;
+use Cjsaylor\Domain\Behavior\Iteratable;
+use Cjsaylor\Domain\Behavior\Countable;
+use Cjsaylor\Domain\Collection\CollectionTrait;
+
 abstract class Collection implements CollectionInterface {
 	use Iteratable, Countable, CollectionTrait;
 

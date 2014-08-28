@@ -2,8 +2,6 @@
 
 namespace Cjsaylor\Domain\Behavior;
 
-use Cjsaylor\Domain\Accessable;
-
 trait PropertyLimitTrait{
 	use Accessable {
 		Accessable::offsetSet as private accessableOffsetSet;

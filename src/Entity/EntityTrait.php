@@ -1,6 +1,8 @@
 <?php
 
-namespace Cjsaylor\Domain;
+namespace Cjsaylor\Domain\Entity;
+
+use Cjsaylor\Domain\Behavior\ArraySerializable;
 
 trait EntityTrait {
 

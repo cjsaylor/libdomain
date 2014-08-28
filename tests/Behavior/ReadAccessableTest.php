@@ -1,6 +1,8 @@
 <?php
 
-namespace Cjsaylor\Test\Domain;
+namespace Cjsaylor\Test\Domain\Behavior;
+
+use Cjsaylor\Test\Domain\TestValueObject;
 
 class ReadAccessableTest extends \PHPUnit_Framework_TestCase {
 

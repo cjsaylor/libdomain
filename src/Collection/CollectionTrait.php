@@ -1,6 +1,8 @@
 <?php
 
-namespace Cjsaylor\Domain;
+namespace Cjsaylor\Domain\Collection;
+
+use Cjsaylor\Domain\Behavior\ArraySerializable;
 
 trait CollectionTrait {
 
