@@ -13,6 +13,21 @@ This library contains the following abstract classes:
 * `Collection` - A collection of `Entity` objects.
 * `CollectionEntity` - An entity object that also acts as a collection (an identifiable collection).
 
+In cases where the abstract classes can't be extended, all functionality of the abstract classes are provided
+with traits. For example, if you wanted an existing entity to have the properties of a `ValueObject`, then you would
+use the `ReadAccessable` trait:
+
+```php
+use Cjsaylor\Domain\ValueObject\ValueObjectInterface;
+use Cjsaylor\Domain\Behavior\ReadAccessable;
+
+class ConcreteEntity implements ValueObjectInterface {
+  use ReadAccessable;
+}
+```
+
+The `ConcreteEntity` would now be an immutable value object.
+
 ## Examples
 
 #### Entity Example
@@ -99,4 +114,26 @@ $user = new User(['email' => 'user@somedomain.com']);
 
 // Valid
 $user = new User(['email' => new Email('user@somedomain.com')]);
+```
+
+#### Concrete entities example
+
+In some instances, we don't want extra properties to be set on our entities. To limit the properties
+that can be set on an entity, the PropertyLimitable interface/trait can be implemented:
+
+```php
+use Cjsaylor\Domain\Behavior\PropertyLimitable;
+use Cjsaylor\Domain\Behavior\PropertyLimitTrait;
+
+class User extends Entity implements PropertyLimitable {
+
+  public function concreteAttributes() {
+    return ['id', 'email'];
+  }
+
+}
+
+$user = new User();
+$user['id'] = 1; // OK!
+$user['first_name'] = 'Chris'; // Has no affect and is not set.
 ```
