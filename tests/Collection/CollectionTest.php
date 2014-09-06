@@ -78,4 +78,20 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertArrayHasKey(3, $arrayCopy);
 	}
 
+	public function testReduce() {
+		$collection = new TestCollection();
+		$collection->add(new TestEntity(['id' => 1]));
+		$collection->add(new TestEntity(['id' => 2]));
+		$collection->add(new TestEntity(['id' => 3]));
+		$collection->add(new TestEntity(['id' => 4]));
+		$reduced = $collection->reduce([2, 3]);
+		$this->assertEquals($collection, $reduced);
+		$this->assertCount(2, $collection);
+		$arrayCopy = $collection->getIterator()->getArrayCopy();
+		$this->assertArrayNotHasKey(0, $arrayCopy);
+		$this->assertArrayNotHasKey(1, $arrayCopy);
+		$this->assertArrayHasKey(2, $arrayCopy);
+		$this->assertArrayHasKey(3, $arrayCopy);
+	}
+
 }

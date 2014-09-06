@@ -42,6 +42,20 @@ trait CollectionTrait {
 	}
 
 	/**
+	 * Reduce the collection to only provided keys.
+	 *
+	 * Similar to subset, but has the affects this instead of creating a new set.
+	 *
+	 * @param array $keys
+	 * @return self
+	 */
+	public function reduce(array $keys) {
+		$entries = &$this->getItems();
+		$entries = array_intersect_key($entries, array_flip(array_values($keys)));
+		return $this;
+	}
+
+	/**
 	 * Get a reference to the items array for this collection.
 	 *
 	 * @return array
