@@ -56,6 +56,16 @@ trait CollectionTrait {
 	}
 
 	/**
+	 * Remove all items from the collection.
+	 *
+	 * @return void
+	 */
+	public function flush() {
+		$entries = &$this->getItems();
+		$entries = [];
+	}
+
+	/**
 	 * Get a reference to the items array for this collection.
 	 *
 	 * @return array

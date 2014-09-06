@@ -94,4 +94,12 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertArrayHasKey(3, $arrayCopy);
 	}
 
+	public function testFlush() {
+		$collection = new TestCollection();
+		$collection->add(new TestEntity(['id' => 1]));
+		$collection->add(new TestEntity(['id' => 2]));
+		$collection->flush();
+		$this->assertCount(0, $collection);
+	}
+
 }
