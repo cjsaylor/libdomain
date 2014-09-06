@@ -56,6 +56,18 @@ trait CollectionTrait {
 	}
 
 	/**
+	 * Filter this collection based on callback logic.
+	 *
+	 * @param Closure $callback
+	 * @return self
+	 */
+	public function filter(callable $callback) {
+		$entries = &$this->getItems();
+		$entries = array_filter($entries, $callback);
+		return $this;
+	}
+
+	/**
 	 * Remove all items from the collection.
 	 *
 	 * @return void

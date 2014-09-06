@@ -102,4 +102,20 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertCount(0, $collection);
 	}
 
+	public function testFilter() {
+		$collection = new TestCollection();
+		$collection->add(new TestEntity(['id' => 1]));
+		$collection->add(new TestEntity(['id' => 2]));
+		$collection->add(new TestEntity(['id' => 3]));
+		$collection->add(new TestEntity(['id' => 4]));
+		// Filter odd ids
+		$result = $collection->filter(function(TestEntity $subject) {
+			return $subject['id'] % 2 === 0;
+		});
+		$this->assertEquals($result, $collection);
+		$this->assertCount(2, $collection);
+		$arrayCopy = $collection->getIterator()->getArrayCopy();
+		$this->assertEquals([1, 3], array_keys($arrayCopy));
+	}
+
 }
