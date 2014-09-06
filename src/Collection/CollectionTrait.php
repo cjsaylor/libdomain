@@ -29,6 +29,19 @@ trait CollectionTrait {
 	}
 
 	/**
+	 * Get a subset of the collection.
+	 *
+	 * @param array $keys
+	 * @return mixed
+	 */
+	public function subset(array $keys) {
+		$subset = clone $this;
+		$entries = &$subset->getItems();
+		$entries = array_intersect_key($entries, array_flip(array_values($keys)));
+		return $subset;
+	}
+
+	/**
 	 * Get a reference to the items array for this collection.
 	 *
 	 * @return array

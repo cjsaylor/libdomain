@@ -62,4 +62,20 @@ class CollectionTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals($expected, $collection->toArray());
 	}
 
+	public function testSubset() {
+		$collection = new TestCollection();
+		$collection->add(new TestEntity(['id' => 1]));
+		$collection->add(new TestEntity(['id' => 2]));
+		$collection->add(new TestEntity(['id' => 3]));
+		$collection->add(new TestEntity(['id' => 4]));
+		$subset = $collection->subset([2, 3]);
+		$this->assertCount(4, $collection);
+		$this->assertCount(2, $subset);
+		$arrayCopy = $subset->getIterator()->getArrayCopy();
+		$this->assertArrayNotHasKey(0, $arrayCopy);
+		$this->assertArrayNotHasKey(1, $arrayCopy);
+		$this->assertArrayHasKey(2, $arrayCopy);
+		$this->assertArrayHasKey(3, $arrayCopy);
+	}
+
 }
