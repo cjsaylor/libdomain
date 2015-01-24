@@ -17,11 +17,11 @@ abstract class Collection implements CollectionInterface {
 	 */
 	protected $entries;
 
-    /**
-     * Constructor.
-     */
-    public function __construct() {
-        $this->entries = new \ArrayObject();
-    }
+	/**
+	 * Constructor.
+	 */
+	public function __construct() {
+		$this->entries = new \ArrayObject();
+	}
 
 }
