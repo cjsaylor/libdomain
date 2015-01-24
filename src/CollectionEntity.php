@@ -22,9 +22,9 @@ abstract class CollectionEntity implements CollectionInterface, EntityInterface 
 	/**
 	 * Array of Entities.
 	 * 
-	 * @var array
+	 * @var \ArrayObject
 	 */
-	protected $entries = [];
+	protected $entries;
 
 	/**
 	 * Constructor.
@@ -32,6 +32,7 @@ abstract class CollectionEntity implements CollectionInterface, EntityInterface 
 	 * @param array $initialEntityData
 	 */
 	public function __construct(array $initialEntityData = []) {
+		$this->entries = new \ArrayObject();
 		$this->initialize($initialEntityData);
 	}
 

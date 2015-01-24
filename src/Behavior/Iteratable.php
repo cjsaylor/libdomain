@@ -7,9 +7,9 @@ trait Iteratable {
     /**
      * Get the items of this iterable object.
      *
-     * @return array
+     * @return \ArrayObject
      */
-    abstract public function &getItems();
+    abstract public function getItems();
 
 	/**
 	 * IteratorAggregate method to use in foreach's
@@ -17,7 +17,7 @@ trait Iteratable {
 	 * @return \ArrayIterator
 	 */
 	public function getIterator() {
-		return new \ArrayIterator($this->getItems());
+        return $this->getItems()->getIterator();
 	}
 
 }

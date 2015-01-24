@@ -25,7 +25,7 @@ trait CollectionTrait {
 	 * @return boolean
 	 */
 	public function isEmpty() {
-		return empty($this->entries);
+		return $this->getItems()->count() === 0;
 	}
 
 	/**
@@ -36,8 +36,9 @@ trait CollectionTrait {
 	 */
 	public function subset(array $keys) {
 		$subset = clone $this;
-		$entries = &$subset->getItems();
-		$entries = array_intersect_key($entries, array_flip(array_values($keys)));
+		$items = $subset->getItems();
+		$entries = array_intersect_key($subset->getItems()->getArrayCopy(), array_flip(array_values($keys)));
+		$items->exchangeArray($entries);
 		return $subset;
 	}
 
@@ -50,8 +51,8 @@ trait CollectionTrait {
 	 * @return self
 	 */
 	public function reduce(array $keys) {
-		$entries = &$this->getItems();
-		$entries = array_intersect_key($entries, array_flip(array_values($keys)));
+		$entries = array_intersect_key($this->getItems()->getArrayCopy(), array_flip(array_values($keys)));
+		$this->getItems()->exchangeArray($entries);
 		return $this;
 	}
 
@@ -62,8 +63,8 @@ trait CollectionTrait {
 	 * @return self
 	 */
 	public function filter(callable $callback) {
-		$entries = &$this->getItems();
-		$entries = array_filter($entries, $callback);
+		$entries = array_filter($this->getItems()->getArrayCopy(), $callback);
+		$this->getItems()->exchangeArray($entries);
 		return $this;
 	}
 
@@ -73,16 +74,24 @@ trait CollectionTrait {
 	 * @return void
 	 */
 	public function flush() {
-		$entries = &$this->getItems();
-		$entries = [];
+		$this->getItems()->exchangeArray([]);
+	}
+
+	/**
+	 * Ensure the entries of this class are also cloned.
+	 *
+	 * @return void
+	 */
+	public function __clone() {
+		$this->entries = clone $this->entries;
 	}
 
 	/**
 	 * Get a reference to the items array for this collection.
 	 *
-	 * @return array
+	 * @return \ArrayObject
 	 */
-	protected function &getItems() {
+	protected function getItems() {
 		return $this->entries;
 	}
 

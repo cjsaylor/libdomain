@@ -13,8 +13,15 @@ abstract class Collection implements CollectionInterface {
 	/**
 	 * Array of Entities.
 	 * 
-	 * @var array
+	 * @var \ArrayObject
 	 */
-	protected $entries = [];
+	protected $entries;
+
+    /**
+     * Constructor.
+     */
+    public function __construct() {
+        $this->entries = new \ArrayObject();
+    }
 
 }
