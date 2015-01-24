@@ -32,7 +32,7 @@ trait CollectionTrait {
 	 * Get a subset of the collection.
 	 *
 	 * @param array $keys
-	 * @return mixed
+	 * @return CollectionTrait
 	 */
 	public function subset(array $keys) {
 		$subset = clone $this;
