@@ -3,8 +3,9 @@
 namespace Cjsaylor\Test\Domain\Behavior;
 
 use Cjsaylor\Test\Domain\TestConcreteEntity;
+use PHPUnit\Framework\TestCase;
 
-class PropertyLimitTraitTest extends \PHPUnit_Framework_TestCase {
+class PropertyLimitTraitTest extends TestCase {
 
     public function testConcrete() {
         $concrete = new TestConcreteEntity();

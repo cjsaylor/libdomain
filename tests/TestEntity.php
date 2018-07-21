@@ -2,6 +2,6 @@
 
 namespace Cjsaylor\Test\Domain;
 
-class TestEntity extends \Cjsaylor\Domain\Entity {
+use \Cjsaylor\Domain\Entity;
 
-}
+class TestEntity extends Entity {}

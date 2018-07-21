@@ -1,14 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Cjsaylor\Domain\Behavior;
 
-interface PropertyLimitable {
+interface PropertyLimitable
+{
 
     /**
      * Get a list of attributes that are allowed to be set.
      *
      * @return array
      */
-    public function concreteAttributes();
-
+    public function concreteAttributes() : array;
 }

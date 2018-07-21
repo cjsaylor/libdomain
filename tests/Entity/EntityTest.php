@@ -3,8 +3,10 @@
 namespace Cjsaylor\Test\Domain;
 
 use Cjsaylor\Test\Domain\TestEntity;
+use PHPUnit\Framework\TestCase;
 
-class EntityTest extends \PHPUnit_Framework_TestCase {
+
+class EntityTest extends TestCase {
 
 	public function testEntityAccessable() {
 		$entity = new TestEntity(['entry1' => 1, 'entry2' => true]);
@@ -31,7 +33,9 @@ class EntityTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testAccessableCallback() {
-		$entity = $this->getMock('\Cjsaylor\Test\Domain\TestEntity', ['setId', 'setComplexStringWithUnderscores']);
+		$entity = $this->getMockBuilder(TestEntity::class)
+			->setMethods(['setId', 'setComplexStringWithUnderscores'])
+			->getMock();
 		$entity
 			->expects($this->once())
 			->method('setId')
@@ -47,7 +51,9 @@ class EntityTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testAccessableCallbackOnInitialize() {
-		$entity = $this->getMock('\Cjsaylor\Test\Domain\TestEntity', ['setId']);
+		$entity = $this->getMockBuilder(TestEntity::class)
+			->setMethods(['setId'])
+			->getMock();
 		$entity
 			->expects($this->once())
 			->method('setId')

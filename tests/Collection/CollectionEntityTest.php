@@ -4,8 +4,9 @@ namespace Cjsaylor\Test\Domain\Collection;
 
 use Cjsaylor\Test\Domain\TestCollectionEntity;
 use Cjsaylor\Test\Domain\TestEntity;
+use PHPUnit\Framework\TestCase;
 
-class CollectionEntityTest extends \PHPUnit_Framework_TestCase {
+class CollectionEntityTest extends TestCase {
 
 	public function testAll() {
 		$collectionEntity = new TestCollectionEntity(['id' => 1]);

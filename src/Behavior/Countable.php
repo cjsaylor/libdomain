@@ -1,16 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Cjsaylor\Domain\Behavior;
 
-trait Countable {
+trait Countable
+{
 
-	/**
-	 * Countable interface method
-	 *
-	 * @return integer
-	 */
-	public function count() {
-		return count($this->getItems());
-	}
-
+    /**
+     * Countable interface method
+     *
+     * @return integer
+     */
+    public function count() : int
+    {
+        return count($this->getItems());
+    }
 }

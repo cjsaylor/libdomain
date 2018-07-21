@@ -4,19 +4,29 @@ namespace Cjsaylor\Test\Domain\Collection;
 
 use Cjsaylor\Test\Domain\TestCollection;
 use Cjsaylor\Test\Domain\TestEntity;
+use PHPUnit\Framework\TestCase;
 
-class CollectionTest extends \PHPUnit_Framework_TestCase {
+class CollectionTest extends TestCase {
+
+	public function testConstructWithInitialValues() {
+		$entities = [
+			new TestEntity(['a' => 1]),
+			new TestEntity(['a' => 2])
+		];
+		$collection = new TestCollection(...$entities);
+		$this->assertEquals(2, count($collection));
+	}
 
 	public function testIteratable() {
 		$collection = new TestCollection();
 		$collection->add(new TestEntity(['foo' => 'bar']));
 		$collection->add(new TestEntity(['foo' => 'bar2']));
-		$expector = $this->getMock('stdClass', ['test']);
-		$expector->expects($this->exactly(2))->method('test');
+		$count = 0;
 		foreach ($collection as $entry) {
 			$this->assertInstanceOf('Cjsaylor\Test\Domain\TestEntity', $entry);
-			$expector->test();
+			$count += 1;
 		}
+		$this->assertEquals(2, $count);
 	}
 
 	public function testCountable() {

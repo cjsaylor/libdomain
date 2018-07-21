@@ -3,8 +3,9 @@
 namespace Cjsaylor\Test\Domain\Behavior;
 
 use Cjsaylor\Test\Domain\TestValueObject;
+use PHPUnit\Framework\TestCase;
 
-class ReadAccessableTest extends \PHPUnit_Framework_TestCase {
+class ReadAccessableTest extends TestCase {
 
 	public function testAccess() {
 		$value = new TestValueObject('a');

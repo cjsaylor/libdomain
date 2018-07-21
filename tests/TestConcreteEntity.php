@@ -8,7 +8,7 @@ use Cjsaylor\Domain\Behavior\PropertyLimitTrait;
 class TestConcreteEntity extends TestEntity implements PropertyLimitable {
 	use PropertyLimitTrait;
 
-	public function concreteAttributes() {
+	public function concreteAttributes() : array {
 		return ['id', 'name'];
 	}
 
