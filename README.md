@@ -39,20 +39,9 @@ The first example illustrates a user object that accepts an `email` attribute th
 use \Cjsaylor\Domain\Entity;
 use \Cjsaylor\Domain\ValueObject;
 
-class User extends Entity {
-
-  public function offsetSet($offset, $value) {
-		if ($offset === 'email' && !$value instanceof Email) {
-		  throw new \LogicException('Email must be an email value object!');
-		}
-		parent::offsetSet($offset, $value);
-	}
-
-}
-
-class Email extends ValueObject {
-
-  public function __construct($value) {
+class Email extends ValueObject
+{
+  public function __construct(string $value) {
     // Validate an email address here
     $this['value'] = $value;
   }
@@ -60,11 +49,22 @@ class Email extends ValueObject {
   public function __toString() {
     return $this['value'];
   }
-
 }
 
-$user = new User();
-$user['email'] = new Email('user@somedomain.com');
+class User extends Entity
+{
+  public function offsetSet($offset, $value) : void
+  {
+    if ($offset === 'email' && !$value instanceof Email) {
+      throw new \LogicException('Email must be an email value object!');
+    }
+    parent::offsetSet($offset, $value);
+  }
+}
+
+$user = new User([
+  'email' => new Email('user@somedomain.com')
+]);
 ```
 
 #### CollectionEntity example
@@ -76,23 +76,34 @@ It will make use of the `User` entity defined in the first example.
 ```php
 use \Cjsaylor\Domain\CollectionEntity;
 
-class UserGroup extends CollectionEntity {
+class UserGroup extends CollectionEntity
+{
+  // Here, we set the expectation that this collection can take only users
+  public function __construct(array $data = [], User ...$users) {
+    parent::__construct($data, ...$users);
+  }
 
+  // Here's a method to add additional users post-construction
   public function add(User $user) {
     $this->getItems()[] = $user;
   }
-
 }
 
-$userGroup = new UserGroup([
-  'id' => 1
-]);
-$user = new User([
-  'id' => 1,
-  'email' => new Email('user@somedomain.com')
-]);
+$users = [
+  new User([
+    'id' => 1,
+    'email' => new Email('user@somedomain.com')
+  ]),
+  new User([
+    'id' => 2,
+    'email' => new Email('user2@somedomain.com')
+  ])
+];
 
-$userGroup->add($user);
+$userGroup = new UserGroup([
+  'id' => 1,
+  ...$users
+]);
 ```
 
 #### Setter callback example
@@ -119,7 +130,7 @@ $user = new User(['email' => new Email('user@somedomain.com')]);
 #### Concrete entities example
 
 In some instances, we don't want extra properties to be set on our entities. To limit the properties
-that can be set on an entity, the PropertyLimitable interface/trait can be implemented:
+that can be set on an entity, the `PropertyLimitable` interface/trait can be implemented:
 
 ```php
 use Cjsaylor\Domain\Behavior\PropertyLimitable;
