@@ -32,10 +32,11 @@ abstract class CollectionEntity implements CollectionInterface, EntityInterface,
      * Constructor.
      *
      * @param array $initialEntityData
+     * @param Collectable[] ...$entries Optional entries to intialize the collection
      */
-    public function __construct(array $initialEntityData = [])
+    public function __construct(array $initialEntityData = [], Collectable ...$entries)
     {
-        $this->entries = new \ArrayObject();
+        $this->entries = new \ArrayObject($entries);
         $this->initialize($initialEntityData);
     }
 
