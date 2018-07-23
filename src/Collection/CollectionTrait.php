@@ -6,7 +6,6 @@ use Cjsaylor\Domain\Behavior\ArraySerializable;
 
 trait CollectionTrait
 {
-
     /**
      * Array representation.
      *
